@@ -30,6 +30,9 @@
     <Filter Include="リソース ファイル\SCENES\PlayScene">
       <UniqueIdentifier>{50b50e44-33d0-4edc-8c31-8e568bdbc4f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="リソース ファイル\SCENES\TitleScene">
+      <UniqueIdentifier>{6e449d45-5544-4c23-b288-9a87508d3102}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\BoxCollider.cpp">
@@ -86,7 +89,6 @@
     <ClCompile Include="Engine\Transform.cpp">
       <Filter>01Engine\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Engine\Audio.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
@@ -107,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="Stage.cpp">
       <Filter>リソース ファイル\SCENES\PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>リソース ファイル\SCENES\TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +169,6 @@
     <ClInclude Include="Engine\Transform.h">
       <Filter>01Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Engine\Audio.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
@@ -185,6 +189,9 @@
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>リソース ファイル\SCENES\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>リソース ファイル\SCENES\TitleScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
