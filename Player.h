@@ -1,16 +1,13 @@
 #pragma once
 #include "Engine/GameObject.h"
-#include<vector>
-using std::vector;
-class Stage :
+
+class Player :
     public GameObject
-{ 
-	int hfloor;
-	int hblock;
-	vector<vector<int>> stageData_;
+{
+	int hplayer;
 public:
-	Stage(GameObject* parent);
-	~Stage();
+	Player(GameObject* parent);
+	~Player();
 	//‰Šú‰»
 	void Initialize() override;
 
