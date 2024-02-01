@@ -5,6 +5,7 @@ class Player :
     public GameObject
 {
 	int hplayer;
+	float speed_;
 public:
 	Player(GameObject* parent);
 	~Player();

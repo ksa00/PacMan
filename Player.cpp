@@ -3,10 +3,10 @@
 #include"Engine/Input.h"
 #include"Engine/Camera.h"
 namespace {
-	const float player_movespeed = 0.015f;
+	const float player_movespeed = 0.05f;
 }
 Player::Player(GameObject* parent)
-	:GameObject(parent,"Player"),hplayer(-1)
+	:GameObject(parent,"Player"),hplayer(-1),speed_(player_movespeed)
 {
 }
 
@@ -37,7 +37,7 @@ void Player::Update()
 		//moveDir = Dir::LEFT;
 	}
 	if (Input::IsKey(DIK_D)) {
-		move = XMVECTOR{ 1,0,1,0 };
+		move = XMVECTOR{ 1,0,0,0 };
 	//	moveDir = Dir::RIGHT;
 	}
 	if (Input::IsKey(DIK_W)) {
@@ -51,9 +51,10 @@ void Player::Update()
 	XMVECTOR pos = XMLoadFloat3(&(transform_.position_));
 	pos = pos + speed_ * move;
 	XMStoreFloat3(&(transform_.position_), pos);
+
 	XMVECTOR vdot=XMVector3Dot(vfront, move);
 	float angle = acos(XMVectorGetX(vdot));
-		transform_.rotate_.y=XMConvertToDegrees(angle);
+
 		XMVECTOR vcross = XMVector3Cross(vfront, move);
 		if (XMVectorGetY(vcross) < 0) {
 			angle *= -1;
