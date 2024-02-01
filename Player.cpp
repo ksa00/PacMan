@@ -3,11 +3,12 @@
 #include"Engine/Input.h"
 #include"Engine/Camera.h"
 #include"Engine//Debug.h"
+#include"Stage.h"
 namespace {
 	const float player_movespeed = 1.0f;
 }
 Player::Player(GameObject* parent)
-	:GameObject(parent,"Player"),hplayer(-1),speed_(player_movespeed)
+	:GameObject(parent,"Player"),hplayer(-1),speed_(player_movespeed),pstage(nullptr)
 {
 }
 
@@ -21,7 +22,9 @@ void Player::Initialize()
 	assert(hplayer >= 0);
 	transform_.position_.x = 0.5;
 	transform_.position_.z = 1.5;
+	pstage = (Stage *)FindObject("Stage");
 }
+
 
 void Player::Update()
 {
@@ -50,11 +53,25 @@ void Player::Update()
 		//moveDir = Dir::DOWN;
 	}
 	XMVECTOR pos = XMLoadFloat3(&(transform_.position_));
-	pos = pos + speed_ * move;
-	Debug::Log("X,Z=");
+	XMVECTOR posTemp = XMVectorZero();
+	posTemp = pos + speed_ * move;
+	//pos = pos + speed_ * move;
+	/*Debug::Log("X,Z=");
 	Debug::Log(XMVectorGetX(pos));
 	Debug::Log(",");
-	Debug::Log(XMVectorGetZ(pos),true);
+	Debug::Log(XMVectorGetZ(pos),true);*/
+	int tx, ty;
+	tx = (int)(XMVectorGetX(pos)+1.0f);
+	ty = pstage->GetStageWidth()-(int)(XMVectorGetZ(pos)+1.0f);
+	if (!(pstage->iswall(tx, ty))) {
+		pos = posTemp;
+	}
+	Debug::Log("iX,iZ=");
+	Debug::Log(tx);
+	Debug::Log(",");
+	Debug::Log(ty, true);
+	Debug::Log(":");
+	Debug::Log(pstage->iswall(tx, ty));
 
 
 	if(!XMVector3Equal(move,XMVectorZero())){
