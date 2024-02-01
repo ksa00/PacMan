@@ -1,11 +1,12 @@
 #pragma once
 #include "Engine/GameObject.h"
-
+class Stage;
 class Player :
     public GameObject
 {
 	int hplayer;
 	float speed_;
+	Stage* pstage;
 public:
 	Player(GameObject* parent);
 	~Player();
