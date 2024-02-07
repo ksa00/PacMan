@@ -4,11 +4,13 @@
 #include"Engine/Camera.h"
 #include"Engine//Debug.h"
 #include"Stage.h"
+#include"Gauge.h"
 namespace {
-	const float player_movespeed = 1.0f;
+	const float player_movespeed = 0.15f;
 }
 Player::Player(GameObject* parent)
-	:GameObject(parent,"Player"),hplayer(-1),speed_(player_movespeed),pstage(nullptr)
+	:GameObject(parent,"Player"),hplayer(-1),speed_(player_movespeed),
+	pstage(nullptr),hpCrr_(100),hpMax_(100)
 {
 }
 
@@ -36,35 +38,38 @@ void Player::Update()
 	XMVECTOR vfront = { 0,0,1,0 };//direction
 	XMVECTOR move{ 0,0,0,0 };//movement vector
 	
-	if (Input::IsKeyDown(DIK_A)) {
+	if (Input::IsKey(DIK_A)) {
 		move = XMVECTOR{ -1,0,0,0 };
 		//moveDir = Dir::LEFT;
 	}
-	if (Input::IsKeyDown(DIK_D)) {
+	if (Input::IsKey(DIK_D)) {
 		move = XMVECTOR{ 1,0,0,0 };
 	//	moveDir = Dir::RIGHT;
 	}
-	if (Input::IsKeyDown(DIK_W)) {
+	if (Input::IsKey(DIK_W)) {
 		move = XMVECTOR{ 0,0,1,0 };
 	//	moveDir = Dir::UP;
 	}
-	if (Input::IsKeyDown(DIK_S)) {
+	if (Input::IsKey(DIK_S)) {
 		move = XMVECTOR{ 0,0,-1,0 };
 		//moveDir = Dir::DOWN;
 	}
 	XMVECTOR pos = XMLoadFloat3(&(transform_.position_));
 	XMVECTOR posTemp = XMVectorZero();
 	posTemp = pos + speed_ * move;
-	//pos = pos + speed_ * move;
 	/*Debug::Log("X,Z=");
 	Debug::Log(XMVectorGetX(pos));
 	Debug::Log(",");
 	Debug::Log(XMVectorGetZ(pos),true);*/
 	int tx, ty;
-	tx = (int)(XMVectorGetX(pos)+1.0f);
-	ty = pstage->GetStageWidth()-(int)(XMVectorGetZ(pos)+1.0f);
+	tx = (int)(XMVectorGetX(posTemp)+1.0f);
+	ty = pstage->GetStageWidth()-(int)(XMVectorGetZ(posTemp)+1.0f);
 	if (!(pstage->iswall(tx, ty))) {
 		pos = posTemp;
+	}
+	else {
+		hpCrr_ = hpCrr_ - 2;
+		if (hpCrr_ < 0)hpCrr_ = 0;
 	}
 	Debug::Log("iX,iZ=");
 	Debug::Log(tx);
@@ -72,7 +77,7 @@ void Player::Update()
 	Debug::Log(ty, true);
 	Debug::Log(":");
 	Debug::Log(pstage->iswall(tx, ty));
-
+	
 
 	if(!XMVector3Equal(move,XMVectorZero())){
 	XMStoreFloat3(&(transform_.position_), pos);
@@ -88,6 +93,8 @@ void Player::Update()
 		}
 		transform_.rotate_.y = XMConvertToDegrees(angle);
 }
+	Gauge* pGauge = (Gauge*)FindObject("Gauge");
+	pGauge->SetGaugeVal(hpCrr_, hpMax_);
 	}
 void Player::Draw()
 {

@@ -47,7 +47,7 @@ void Stage::Initialize()
 	assert(hfloor >= 0);
 	hblock = Model::Load("Model/Wall.fbx");
 	assert(hblock >= 0);
-	Camera::SetPosition({ 6.5,10,-3 });
+	Camera::SetPosition({ 6.5,10,-5 });
 	Camera::SetTarget({ 6.5,0,5.5 });
 }
 
@@ -63,14 +63,6 @@ void Stage::Draw()
 	for (int z = 0; z < stageHeight_; z++) {
 		for (int x = 0; x < stageWidth_; x++) {
 			floorTrans.position_ = { (float)x, 0, (float)(14-z) };
-			//if (x == 0 || z == 0 || x == 14 || z == 14) {
-			//	Model::SetTransform(hBlock_, floorTrans);
-			//	Model::Draw(hBlock_);
-			//}
-			//else {
-			//	Model::SetTransform(hFloor_, floorTrans);
-			//	Model::Draw(hFloor_);
-			//}
 			if (stageData_[z][x] == 1 ) {
 				Model::SetTransform(hblock, floorTrans);
 				Model::Draw(hblock);

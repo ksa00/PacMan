@@ -1,17 +1,16 @@
 #pragma once
 #include "Engine/GameObject.h"
-class Stage;
-class Player :
+class Gauge :
     public GameObject
 {
-	int hplayer;
-	float speed_;
-	int hpCrr_;
-	int hpMax_;
-	Stage* pstage;
+	int hGaugeBar;
+	int hGaugeFrame_;
+
+	int gaugeMaxVal;
+	int gaugeCntVal;
 public:
-	Player(GameObject* parent);
-	~Player();
+	Gauge(GameObject* parent);
+	~Gauge();
 	//‰Šú‰»
 	void Initialize() override;
 
@@ -23,5 +22,6 @@ public:
 
 	//ŠJ•ú
 	void Release() override;
+	void SetGaugeVal(int _cnt,int _max);
 };
 
