@@ -81,8 +81,10 @@ void Player::Update()
 
 	if(!XMVector3Equal(move,XMVectorZero())){
 	XMStoreFloat3(&(transform_.position_), pos);
-
-	XMVECTOR vdot=XMVector3Dot(vfront, move);
+	XMMATRIX rot = XMMatrixRotationY(-XM_PIDIV2);
+	XMVECTOR modifiedVec = XMVector3TransformCoord(move, rot);
+	float angle = atan2(XMVectorGetZ(modifiedVec), XMVectorGetX(modifiedVec));
+	/*XMVECTOR vdot=XMVector3Dot(vfront, move);
 	assert(XMVectorGetX(vdot) <= 1 && XMVectorGetX(vdot) >= -1);
 	
 	float angle = acos(XMVectorGetX(vdot));
@@ -90,7 +92,7 @@ void Player::Update()
 		XMVECTOR vcross = XMVector3Cross(vfront, move);
 		if (XMVectorGetY(vcross) < 0) {
 			angle *= -1;
-		}
+		}*/
 		transform_.rotate_.y = XMConvertToDegrees(angle);
 }
 	Gauge* pGauge = (Gauge*)FindObject("Gauge");
