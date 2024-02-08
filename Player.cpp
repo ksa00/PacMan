@@ -6,7 +6,7 @@
 #include"Stage.h"
 #include"Gauge.h"
 namespace {
-	const float player_movespeed = 0.15f;
+	const float player_movespeed = 0.5f;
 }
 Player::Player(GameObject* parent)
 	:GameObject(parent,"Player"),hplayer(-1),speed_(player_movespeed),
@@ -30,10 +30,7 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	/*enum Dir {
-		UP,LEFT,DOWN,RIGHT,NONE,
-	};
-	int moveDir = Dir::NONE;*/
+	
 
 	XMVECTOR vfront = { 0,0,1,0 };//direction
 	XMVECTOR move{ 0,0,0,0 };//movement vector
@@ -48,7 +45,7 @@ void Player::Update()
 	}
 	if (Input::IsKey(DIK_W)) {
 		move = XMVECTOR{ 0,0,1,0 };
-	//	moveDir = Dir::UP;
+	//	moveDir = Dir::UP;d
 	}
 	if (Input::IsKey(DIK_S)) {
 		move = XMVECTOR{ 0,0,-1,0 };
@@ -71,27 +68,13 @@ void Player::Update()
 		hpCrr_ = hpCrr_ - 2;
 		if (hpCrr_ < 0)hpCrr_ = 0;
 	}
-	Debug::Log("iX,iZ=");
-	Debug::Log(tx);
-	Debug::Log(",");
-	Debug::Log(ty, true);
-	Debug::Log(":");
-	Debug::Log(pstage->iswall(tx, ty));
-	
 
 	if(!XMVector3Equal(move,XMVectorZero())){
 	XMStoreFloat3(&(transform_.position_), pos);
-
-	XMVECTOR vdot=XMVector3Dot(vfront, move);
-	assert(XMVectorGetX(vdot) <= 1 && XMVectorGetX(vdot) >= -1);
-	
-	float angle = acos(XMVectorGetX(vdot));
-
-		XMVECTOR vcross = XMVector3Cross(vfront, move);
-		if (XMVectorGetY(vcross) < 0) {
-			angle *= -1;
-		}
-		transform_.rotate_.y = XMConvertToDegrees(angle);
+	XMMATRIX rot = XMMatrixRotationY(XM_PIDIV2);
+	XMVECTOR modifiedVec = XMVector3TransformCoord(move, rot);
+	float angle = atan2(XMVectorGetZ(modifiedVec), XMVectorGetX(modifiedVec));
+		transform_.rotate_.y = XMConvertToDegrees(-angle);
 }
 	Gauge* pGauge = (Gauge*)FindObject("Gauge");
 	pGauge->SetGaugeVal(hpCrr_, hpMax_);
