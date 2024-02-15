@@ -119,6 +119,9 @@
     <ClCompile Include="Gauge.cpp">
       <Filter>リソース ファイル\SCENES\PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="RectCollider.cpp">
+      <Filter>リソース ファイル\SCENES\PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -203,6 +206,9 @@
       <Filter>リソース ファイル\SCENES\PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Gauge.h">
+      <Filter>リソース ファイル\SCENES\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RectCollider.h">
       <Filter>リソース ファイル\SCENES\PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
