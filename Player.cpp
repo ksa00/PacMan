@@ -6,6 +6,7 @@
 #include"Stage.h"
 #include"Gauge.h"
 #include"RectCollider.h"
+#include"Engine/SceneManager.h"
 
 namespace {
 	const float player_movespeed = 0.15f;
@@ -27,7 +28,7 @@ void Player::Initialize()
 	transform_.position_.x = 0.5;
 	transform_.position_.z = 1.5;
 	pstage = (Stage *)FindObject("Stage");
-	rec.SetRectCenter(transform_.position_.x, transform_.position_.z, 1.0, 1.0);
+	//rec.SetRectCenter(transform_.position_.x, transform_.position_.z, 1.0, 1.0);
 }
 
 
@@ -98,7 +99,12 @@ void Player::Update()
 	}
 	else {
 		hpCrr_ = hpCrr_ - 2;
-		if (hpCrr_ < 0)hpCrr_ = 0;
+		if (hpCrr_ <= 0) {
+			hpCrr_ = 0;
+			KillMe();
+			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+			pSceneManager->ChangeScene(SCENE_ID_CLEAR);
+		}
 	}
 
 	if(!XMVector3Equal(move,XMVectorZero())){

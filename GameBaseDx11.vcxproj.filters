@@ -33,6 +33,9 @@
     <Filter Include="リソース ファイル\SCENES\TitleScene">
       <UniqueIdentifier>{6e449d45-5544-4c23-b288-9a87508d3102}</UniqueIdentifier>
     </Filter>
+    <Filter Include="リソース ファイル\SCENES\ClearScene">
+      <UniqueIdentifier>{7a5fddc6-66ec-4f53-b996-317880c41186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\BoxCollider.cpp">
@@ -122,6 +125,9 @@
     <ClCompile Include="RectCollider.cpp">
       <Filter>リソース ファイル\SCENES\PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="ClearScene.cpp">
+      <Filter>リソース ファイル\SCENES\ClearScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -210,6 +216,9 @@
     </ClInclude>
     <ClInclude Include="RectCollider.h">
       <Filter>リソース ファイル\SCENES\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearScene.h">
+      <Filter>リソース ファイル\SCENES\ClearScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

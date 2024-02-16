@@ -9,7 +9,7 @@ class Player :
 	int hpCrr_;
 	int hpMax_;
 	Stage* pstage;
-	RectCollider rec;
+	//RectCollider rec;
 public:
 	Player(GameObject* parent);
 	~Player();

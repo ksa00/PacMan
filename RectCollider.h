@@ -1,9 +1,10 @@
 #pragma once
-#include "Engine/GameObject.h"
-class RectCollider :
-    public GameObject
+
+class RectCollider 
+   
 
 {
+public:
 	float top;
 	float bottom;
 	float left;
@@ -12,10 +13,8 @@ class RectCollider :
 	float centery;
 	float width;
 	float height;
-public:
-	
 	//引数：parent  親オブジェクト（SceneManager）
-	RectCollider(GameObject* parent);
+	RectCollider();
 
 	//初期化
 	~RectCollider();
@@ -29,15 +28,6 @@ public:
 	float GetCenterY();
 	float GetWidth();
 	float GetHeight();
-	void Initialize() override;
-
-	//更新
-	void Update() override;
-
-	//描画
-	void Draw() override;
-
-	//開放
-	void Release() override;
+	
 };
 

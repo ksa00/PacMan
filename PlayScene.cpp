@@ -2,9 +2,10 @@
 #include"Stage.h"
 #include"Player.h"
 #include"Gauge.h"
+#include "Engine/Text.h"
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
-	: GameObject(parent, "PlayScene")
+	: GameObject(parent, "PlayScene"),pText(nullptr)
 {
 }
 
@@ -14,6 +15,8 @@ void PlayScene::Initialize()
 	Instantiate<Stage>(this);
 	Instantiate<Player>(this);
 	Instantiate<Gauge>(this);
+	pText = new Text;
+	pText->Initialize();
 
 }
 
@@ -26,6 +29,7 @@ void PlayScene::Update()
 //描画
 void PlayScene::Draw()
 {
+	pText->Draw(512, 30, "P A C M A N");
 }
 
 //開放

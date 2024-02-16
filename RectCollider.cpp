@@ -1,7 +1,7 @@
 #include "RectCollider.h"
 
-RectCollider::RectCollider(GameObject* parent)
-	:GameObject(parent,"RectCollider"),
+RectCollider::RectCollider()
+	:
 	top(-1),
 	bottom(-1),
 	left(-1),
@@ -80,19 +80,4 @@ float RectCollider::GetWidth()
 float RectCollider::GetHeight()
 {
 	return height;
-}
-void RectCollider::Initialize()
-{
-}
-
-void RectCollider::Update()
-{
-}
-
-void RectCollider::Draw()
-{
-}
-
-void RectCollider::Release()
-{
 }

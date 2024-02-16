@@ -12,12 +12,12 @@ Gauge::~Gauge()
 
 void Gauge::Initialize()
 {
-	hGaugeBar = Image::Load("Image/life.png");
+	hGaugeBar = Image::Load("Image/health.png");
 	assert(hGaugeBar >= 0);
-	hGaugeFrame_ = Image::Load("image/lifebar.png");
+	hGaugeFrame_ = Image::Load("image/lifebarframe.png");
 	assert(hGaugeFrame_ >= 0);
-	transform_.position_.x = 0.0f;
-	transform_.position_.y = 0.9f;
+	transform_.position_.x =- 0.95f;
+	transform_.position_.y = 0.85f;
 
 }
 

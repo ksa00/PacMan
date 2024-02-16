@@ -1,14 +1,15 @@
 #pragma once
+
 #include "Engine/GameObject.h"
 
 //テストシーンを管理するクラス
-class TitleScene : public GameObject
+class ClearScene : public GameObject
 {
-int	hTitle;
+	int hGameOver;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
-	TitleScene(GameObject* parent);
+	ClearScene(GameObject* parent);
 
 	//初期化
 	void Initialize() override;
